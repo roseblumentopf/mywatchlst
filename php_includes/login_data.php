@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 // If user is logged in, header them away
 if (isset($_SESSION["email"])) {
@@ -6,6 +7,7 @@ if (isset($_SESSION["email"])) {
     exit();
 }
 ?><?php
+
 // AJAX CALLS THIS LOGIN CODE TO EXECUTE
 if (isset($_POST["e"])) {
 // CONNECT TO THE DATABASE
@@ -23,7 +25,7 @@ if (isset($_POST["e"])) {
         exit();
     } else {
 // END FORM DATA ERROR HANDLING
-        $sql = "SELECT id, email, password FROM users WHERE email='$e' LIMIT 1";//AND activated='1' wieder einfügen
+        $sql = "SELECT id, email, password FROM users WHERE email='$e' LIMIT 1"; //AND activated='1' wieder einfügen
         $query = mysqli_query($conn, $sql);
         $row = mysqli_fetch_row($query);
         //echo count($row);

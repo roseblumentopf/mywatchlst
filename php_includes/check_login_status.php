@@ -13,7 +13,7 @@ $conn = mysqli_connect("localhost", "root", "", "mywatchlst");
 
 // User Verify function
 function evalLoggedUser($conn, $id, $e, $p) {
-    $sql = "SELECT ip FROM users WHERE id='$id' AND email='$e' AND password='$p' AND activated='1' LIMIT 1";//AND activated='1'
+    $sql = "SELECT ip FROM users WHERE id='$id' AND email='$e' AND password='$p' AND activated='1' LIMIT 1"; //AND activated='1'
     $query = mysqli_query($conn, $sql);
     $numrows = mysqli_num_rows($query);
     if ($numrows > 0) {

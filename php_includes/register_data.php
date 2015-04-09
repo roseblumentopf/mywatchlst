@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 // If user is logged in, header them away
 if (isset($_SESSION["email"])) {
@@ -50,7 +51,7 @@ if (isset($_POST["e"])) {
 //include_once ("php_includes/randStrGen.php");
 //$p_hash = randStrGen(20)."$cryptpass".randStrGen(20);
         $p_hash = md5($p);
-        $string_temp = $e+$g+$p_hash+$c+$ip;
+        $string_temp = $e + $g + $p_hash + $c + $ip;
         $string_hash = hash("sha256", $string_temp);
 // Add user info into the database table for the main site table
         $sql = "INSERT INTO users (email, password, gender, country, ip, signup, lastlogin, activated)       
@@ -71,14 +72,14 @@ if (isset($_POST["e"])) {
 // Email the user their activation link
         if ($query) {
             echo 'signup_success';
-//            $to = "$e";
-//            $from = "cronjob@h2201857.stratoserver.net";
-//            $subject = 'yoursitename Account Activation';
-//            $message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>yoursitename Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;"><a href="http://www.yoursitename.com"><img src="http://www.yoursitename.com/images/logo.png" width="36" height="30" alt="yoursitename" style="border:none; float:left;"></a>yoursitename Account Activation</div><div style="padding:24px; font-size:17px;">Hello ' . $e . ',<br /><br />Click the link below to activate your account when ready:<br /><br /><a href="http://h2201857.stratoserver.net/clean/activation.php?e=' . $e . '&a=' . $string_hash . '">Click here to activate your account now</a><br /><br />Login after successful activation using your:<br />* E-mail Address: <b>' . $e . '</b></div></body></html>';
-//            $headers = "From: $from\n";
-//            $headers .= "MIME-Version: 1.0\n";
-//            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-//            mail($to, $subject, $message, $headers);
+            $to = "$e";
+            $from = "cronjob@h2201857.stratoserver.net";
+            $subject = 'yoursitename Account Activation';
+            $message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>yoursitename Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;"><a href="http://www.yoursitename.com"><img src="http://www.yoursitename.com/images/logo.png" width="36" height="30" alt="yoursitename" style="border:none; float:left;"></a>yoursitename Account Activation</div><div style="padding:24px; font-size:17px;">Hello ' . $e . ',<br /><br />Click the link below to activate your account when ready:<br /><br /><a href="http://h2201857.stratoserver.net/clean/activation.php?e=' . $e . '&a=' . $string_hash . '">Click here to activate your account now</a><br /><br />Login after successful activation using your:<br />* E-mail Address: <b>' . $e . '</b></div></body></html>';
+            $headers = "From: $from\n";
+            $headers .= "MIME-Version: 1.0\n";
+            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+            mail($to, $subject, $message, $headers);
         } else {
             echo 'signup_error';
         }

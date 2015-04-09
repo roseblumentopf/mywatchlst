@@ -181,5 +181,157 @@ function login() {
     }
 }
 
+function pass() {
+    var e = _("form-control").value;
+    var status = _("status2");
+    if (e === "" || check_email(e) === false) {
+        status.innerHTML = "This is not a valid email.";
+        console.log("1");
+    } else {
+        status.innerHTML = 'please wait ...';
+        var ajax = ajaxObj("POST", "php_includes/pass_data.php");
+        ajax.onreadystatechange = function () {
+            if (ajaxReturn(ajax) === true) {
+                var response = ajax.responseText;
+                console.log(response);
+                if (ajax.responseText !== "success") {
+                    status.innerHTML = "Something went wrong, please try again.";
+                } else {
+                    $("#myAlert").append('<text><strong>Very Good!</strong> Everything worked fine and you can check your e-mail inbox.</text>');
+                    $("#myAlert").slideDown(400);
+                    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+                        $("#myAlert").slideUp(400);
+                    }, 5000);
+                    _("form-control").value = '';
+                    status.innerHTML = '';
+                    window.location = 'http://h2201857.stratoserver.net/clean/index.php';
+                }
+            }
+        },
+                ajax.send("e=" + e);
+    }
+}
+
+function change() {
+    var p1 = _("new").value;
+    var p2 = _("new2").value;
+    var key = get_url_param("p");
+    var status = _("status3");
+    if (p1 === "" || p2 === "") {
+        status.innerHTML = "Please fill out all of the form data.";
+    } else if (p1 !== p2) {
+        status.innerHTML = "Your password fields do not match.";
+    } else {
+        status.innerHTML = 'please wait ...';
+        var ajax = ajaxObj("POST", "php_includes/pass_data.php");
+        ajax.onreadystatechange = function () {
+            if (ajaxReturn(ajax) === true) {
+                if (ajax.responseText !== "success") {
+                    status.innerHTML = ajax.responseText;
+                } else {
+                    $("#myAlert").append('<text><strong>Very Good!</strong> Everything worked fine and you can now use your new password.</text>');
+                    $("#myAlert").slideDown(400);
+                    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+                        $("#myAlert").slideUp(400);
+                    }, 5000);
+                    _("new").value = '';
+                    _("new2").value = '';
+                    status.innerHTML = '';
+                    window.location = 'http://h2201857.stratoserver.net/clean/index.php';
+                }
+            }
+        },
+                ajax.send("p=" + p1 + "&k=" + key);
+    }
+}
+
+function changeuserpass() {
+    var p0 = _("old").value;
+    var p1 = _("new3").value;
+    var p2 = _("new4").value;
+    var status = _("status4");
+    if (p1 === "" || p2 === "" || p0 === "") {
+        status.innerHTML = "Please fill out all of the form data.";
+    } else if (p1 !== p2) {
+        status.innerHTML = "Your password fields do not match.";
+    } else {
+        status.innerHTML = 'please wait ...';
+        var ajax = ajaxObj("POST", "php_includes/pass_data.php");
+        ajax.onreadystatechange = function () {
+            if (ajaxReturn(ajax) === true) {
+                if (ajax.responseText !== "success") {
+                    status.innerHTML = ajax.responseText;
+                } else {
+                    $("#myAlert").append('<text><strong>Very Good!</strong> Everything worked fine and you can now use your new password.</text>');
+                    $("#myAlert").slideDown(400);
+                    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+                        $("#myAlert").slideUp(400);
+                    }, 5000);
+                    _("new3").value = '';
+                    _("new4").value = '';
+                    _("old").value = '';
+                    status.innerHTML = '';
+                }
+            }
+        },
+                ajax.send("p=" + p1 + "&o=" + p0);
+    }
+}
+
+//------------------------------typeahead.js-------------------------------------
+
+$(function () {
+    $('.form-control').typeahead({
+        displayKey: 'value',
+        header: '<b>&nbsp&nbspMovie suggestions...</b>',
+        limit: 10,
+        minLength: 3,
+        remote: {
+            url: 'https://api.themoviedb.org/3/search/movie?query=%QUERY&api_key=93ad36446acab4b05301022006e5bdc4',
+            filter: function (parsedResponse) {
+                retval = [];
+                debugger;
+                for (var i = 0; i < parsedResponse.results.length; i++) {
+                    if (parsedResponse.results[i].release_date === '') {
+                        retval.push({
+                            value: parsedResponse.results[i].original_title,
+                            tokens: parsedResponse.results[i].original_title,
+                            id: parsedResponse.results[i].id
+                        });
+                    }
+                    else {
+                        var string = parsedResponse.results[i].release_date;
+                        var array = string.split('-');
+                        var year = array[0];
+                        retval.push({
+                            value: parsedResponse.results[i].original_title + ' (' + year + ')',
+                            tokens: parsedResponse.results[i].original_title + ' (' + year + ')',
+                            id: parsedResponse.results[i].id
+                        });
+                    }
+                }
+                return retval;
+            },
+            dataType: 'jsonp'
+        }
+    }).on('typeahead:selected', function ($e, retval) {
+        var string = retval['id'];
+        window.location = 'http://localhost/mywatchlst/movie/' + string;
+    });
+});
+
+$(function () {
+    $('#btnsearch').click(function () {
+        var s = $('.form-control').val();
+        if (s === "") {
+            console.log("error");
+        }
+        else {
+            window.location = 'http://localhost/mywatchlst/search/' + s;
+        }
+        return false;
+    });
+});
+
 
 

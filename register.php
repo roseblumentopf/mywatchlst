@@ -7,19 +7,19 @@
     <div class="container"  >
 
         <form name="signupform" id="signupform" onsubmit="return false;">
-            <label style="color: white">Email:</label>
+            <label>Email:</label>
             <input type="email" id="email" onfocus="emptyElement('status')" onkeyup="restrict('email')" placeholder="" maxlength="88"><br>
-            <label style="color: white">Password:</label>
+            <label>Password:</label>
             <input type="password" id="pass1"  onfocus="emptyElement('status')" placeholder="" maxlength="16"><br>
-            <label style="color: white">Password again:</label>
+            <label>Password again:</label>
             <input type="password" id="pass2" onfocus="emptyElement('status')" placeholder="" maxlength="16"><br>
-            <label style="color: white">Gender:</label>
+            <label>Gender:</label>
             <select id="gender">
                 <option value="">Choose</option>
                 <option value="m">Male</option>
                 <option value="f">Female</option>
             </select>
-            <label style="color: white">Country:</label>
+            <label>Country:</label>
             <select id="country">
                 <option value="">Choose</option>
                 <option value="USA">USA</option>

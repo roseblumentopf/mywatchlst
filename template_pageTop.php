@@ -10,10 +10,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <base href="http://localhost/mywatchlst/" />
         <!--[if IE]>
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
             <![endif]-->
-        <title>Multipager Template- Travelic </title>
+        <title>myWATCHLST</title>
         <!--REQUIRED STYLE SHEETS-->
         <!-- BOOTSTRAP CORE STYLE CSS -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -31,7 +32,9 @@
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]--></head>
+        <![endif]-->
+
+    </head>
     <body>
         <?php include_once("php_includes/check_login_status.php"); ?>
         <!-- NAV SECTION -->
@@ -44,7 +47,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">mywatchlst</a>
+                    <a class="navbar-brand" href="index.php">myWATCHLST</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -64,6 +67,12 @@
                             </li>                      
                         <?php } ?>
                     </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Find movies">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btnsearch">Submit</button>
+                    </form>
                 </div>
 
             </div>
