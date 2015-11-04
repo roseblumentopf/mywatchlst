@@ -10,11 +10,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <link rel="shortcut icon" href="assets/img/favicon.png">
         <base href="http://localhost/mywatchlst/" />
         <!--[if IE]>
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
             <![endif]-->
-        <title>myWATCHLST</title>
+        <title>myWatchlst</title>
         <!--REQUIRED STYLE SHEETS-->
         <!-- BOOTSTRAP CORE STYLE CSS -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -47,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">myWATCHLST</a>
+                    <a class="navbar-brand" href="index.php">mywatchlst</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -71,7 +72,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Find movies">
                         </div>
-                        <button type="submit" class="btn btn-primary" id="btnsearch">Submit</button>
+                        <button type="submit" class="btn btn-default" id="btnsearch">Submit</button>
                     </form>
                 </div>
 

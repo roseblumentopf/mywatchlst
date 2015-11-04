@@ -9,7 +9,7 @@
         $yeartext = "&copy; 2014";
     }
     ?>
-    <div id="pageBottom"><?php echo $yeartext ?> myWATCHLST. Movie data supplied by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.
+    <div id="pageBottom"><?php echo $yeartext ?> myWatchlst. Movie data supplied by <a href="https://www.themoviedb.org" target="_blank">TMDb</a>.
     </div>  
 
 </div>
